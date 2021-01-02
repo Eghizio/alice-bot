@@ -13,7 +13,7 @@ const hi: CommandExecute = (message, args) => {
     if(message.author.bot) return;
     
     const symbol = message.author.id === EGHIZIO_DISCORD_ID ? ":heart:" : rollSymbol();
-    // message.reply(`Hi @${message.author.username}!`);
+    
     message.channel.send(`Hi <@${message.author.id}> ${symbol}`);
 };
 
