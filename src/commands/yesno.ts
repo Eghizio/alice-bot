@@ -13,12 +13,14 @@ const yesno: CommandExecute = async (message, args, client) => {
     const { answer, image } = (await response.json()) as ApiResponse;
 
     const answerEmbed = new Discord.MessageEmbed()
-        .setColor("#e91e63")
         .setAuthor("Alice")
         .setTitle(capitalizeFirst(answer))
         .setImage(image);
+
+    if(answer === "yes") answerEmbed.setColor("#5ab783");
+    if(answer === "no") answerEmbed.setColor("#e91e63");
     
-    message.channel.send(answerEmbed);
+    return message.channel.send(answerEmbed);
 };
 
 const command: Command = {
@@ -31,7 +33,7 @@ export default command;
 
 
 interface ApiResponse {
-    answer: string;
+    answer: string; // "yes" | "no" | "maybe"
     forced: boolean;
     image: string;
 };
